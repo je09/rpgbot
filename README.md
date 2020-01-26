@@ -144,7 +144,7 @@ Build docker container:
 
 Run container:
 ```
- docker run -t -v /your-preferred-path/data:/data -e RPGBOT_TOKEN=<Telegram-token> -e RPGBOT_ADMINS=<my-id,another-id> rpgbot
+ docker run -t -v /your-preferred-path/data:/data -e RPGBOT_TOKEN=<Telegram-token> -e RPGBOT_ADMINS=<my-id,another-id> -e RPGBOT_LANG='<your language>' rpgbot
 ```
 
 ### Run without docker
