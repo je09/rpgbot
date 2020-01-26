@@ -1,4 +1,4 @@
-FROM  python:3-alpine
+FROM  python:3.7-slim-buster
 
 COPY requirements.txt /
 
@@ -9,6 +9,10 @@ RUN mkdir /rpgbot
 COPY main.py /rpgbot
 COPY db.py /rpgbot
 COPY config.py /rpgbot
+COPY langs/ /rpgbot/langs/
+COPY commands.py /rpgbot
+COPY diceroller.py /rpgbot
+COPY keyboard.py /rpgbot
 
 VOLUME /data
 

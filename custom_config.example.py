@@ -11,3 +11,6 @@ db_file = 'games.db'
 
 # log file name
 log_file = 'service.log'
+
+# Bot language
+language = 'en'

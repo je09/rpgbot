@@ -89,12 +89,12 @@ class MessageHandler(telepot.helper.ChatHandler):
     def burn_message(self, msg_id):
         # destroy the inline keyboard
         #self.bot.deleteMessage((self.chat_id, msg['message']['message_id']))
-        self.bot.editMessageText(msg_id, 'Too late.')
+        self.bot.editMessageText(msg_id, config.phrase.warning_too_late)
         pass
 
     def send(self, msg, target=None, disablepreview=True, options={}, allowedit=False):
         if (msg == None or len(msg) == 0 or len(msg.split()) == 0) and len(options) == 0:
-            msg = '(no message)'
+            msg = config.phrase.no_message
 
         keyboard = None
         if len(options) > 0:

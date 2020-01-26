@@ -11,8 +11,10 @@ game_templates = OrderedDict([('fae', 'Fate Accelerated RPG'),
 room_container = 'room'
 rolls_container = 'rolls'
 
-preferred_container_order = ['general', 'aspects', 'stunts', 'skills', 'spells', 'inventory', 'rolls']
-preferred_key_order = {'general': ['description', 'fatepoints', 'stress2', 'stress4', 'stress6'], 'aspects': ['highconcept', 'trouble']}
+phrase = config.phrase
+
+preferred_container_order = [phrase.db_general, phrase.db_aspects, phrase.db_stunts, 'skills', 'spells', 'inventory', 'rolls']
+preferred_key_order = {phrase.db_general: [phrase.db_general_description, phrase.db_general_fatepoints, 'stress2', 'stress4', 'stress6'], phrase.db_aspects: [phrase.db_aspects_highconcept, phrase.db_aspects_trouble]}
 
 
 def open_connection():
@@ -185,33 +187,33 @@ def get_all_players_from_game(db, gameid):
 
 def add_default_items(db, userid, gameid, template):
     if template == 'fae':
-        update_item(db, gameid, userid, 'general', 'description', 'Describe your character in a few words.', False)
-        update_item(db, gameid, userid, 'general', 'fatepoints', '3', False)
-        update_item(db, gameid, userid, 'general', 'refresh', '3', False)
-        update_item(db, gameid, userid, 'general', 'stress2', 'Inactive', False)
-        update_item(db, gameid, userid, 'general', 'stress4', 'Inactive', False)
-        update_item(db, gameid, userid, 'general', 'stress6', 'Inactive', False)
-        update_item(db, gameid, userid, 'stunts', '1', 'Set this to your first stunt.', False)
-        update_item(db, gameid, userid, 'aspects', 'highconcept', 'Set this to your high concept.', False)
-        update_item(db, gameid, userid, 'aspects', 'trouble', 'Your character\'s trouble.', False)
-        update_item(db, gameid, userid, 'aspects', '1', 'Set this to your first aspect.', False)
-        update_item(db, gameid, userid, 'approaches', 'careful', '0', False)
-        update_item(db, gameid, userid, 'approaches', 'clever', '0', False)
-        update_item(db, gameid, userid, 'approaches', 'flashy', '0', False)
-        update_item(db, gameid, userid, 'approaches', 'forceful', '0', False)
-        update_item(db, gameid, userid, 'approaches', 'quick', '0', False)
-        update_item(db, gameid, userid, 'approaches', 'sneaky', '0', False)
+        update_item(db, gameid, userid, phrase.db_general, phrase.db_general_description, phrase.db_general_description_value, False)
+        update_item(db, gameid, userid, phrase.db_general, phrase.db_general_fatepoints, '3', False)
+        update_item(db, gameid, userid, phrase.db_general, phrase.db_general_refresh, '3', False)
+        update_item(db, gameid, userid, phrase.db_general, '{} 2'.format(phrase.db_general_stress), phrase.db_inactive, False)
+        update_item(db, gameid, userid, phrase.db_general, '{} 4'.format(phrase.db_general_stress), phrase.db_inactive, False)
+        update_item(db, gameid, userid, phrase.db_general, '{} 6'.format(phrase.db_general_stress), phrase.db_inactive, False)
+        update_item(db, gameid, userid, phrase.db_stunts, '1', phrase.db_aspects_first_aspect, False)
+        update_item(db, gameid, userid, phrase.db_aspects, phrase.db_aspects_highconcept, phrase.db_aspects_highconcept_value, False)
+        update_item(db, gameid, userid, phrase.db_aspects, phrase.db_aspects_trouble, phrase.db_aspects_trouble_value, False)
+        update_item(db, gameid, userid, phrase.db_aspects, '1', phrase.db_aspects_first_aspect, False)
+        update_item(db, gameid, userid, phrase.db_approaches, phrase.db_approaches_careful, '0', False)
+        update_item(db, gameid, userid, phrase.db_approaches, phrase.db_approaches_clever, '0', False)
+        update_item(db, gameid, userid, phrase.db_approaches, phrase.db_approaches_flashy, '0', False)
+        update_item(db, gameid, userid, phrase.db_approaches, phrase.db_approaches_forceful, '0', False)
+        update_item(db, gameid, userid, phrase.db_approaches, phrase.db_approaches_quick, '0', False)
+        update_item(db, gameid, userid, phrase.db_approaches, phrase.db_approaches_sneaky, '0', False)
     elif template == 'dnd':
-        update_item(db, gameid, userid, 'general', 'class', 'Your class.', False)
-        update_item(db, gameid, userid, 'general', 'race', 'Your race.', False)
-        update_item(db, gameid, userid, 'general', 'alignment', 'Your alignment.', False)
-        update_item(db, gameid, userid, 'general', 'level', '1', False)
-        update_item(db, gameid, userid, 'attributes', 'strength', '14', False)
-        update_item(db, gameid, userid, 'attributes', 'dexterity', '14', False)
-        update_item(db, gameid, userid, 'attributes', 'constitution', '14', False)
-        update_item(db, gameid, userid, 'attributes', 'intelligence', '14', False)
-        update_item(db, gameid, userid, 'attributes', 'wisdom', '14', False)
-        update_item(db, gameid, userid, 'attributes', 'charisma', '14', False)
+        update_item(db, gameid, userid, phrase.db_general, phrase.db_general_dnd_class, phrase.db_general_dnd_class_value, False)
+        update_item(db, gameid, userid, phrase.db_general, phrase.db_general_race, phrase.db_general_race_value, False)
+        update_item(db, gameid, userid, phrase.db_general, phrase.db_general_alignment, phrase.db_general_alignment_value, False)
+        update_item(db, gameid, userid, phrase.db_general, phrase.db_general_level, '1', False)
+        update_item(db, gameid, userid, phrase.db_general_attributes, phrase.db_general_attributes_strength, '14', False)
+        update_item(db, gameid, userid, phrase.db_general_attributes, phrase.db_general_attributes_dexterity, '14', False)
+        update_item(db, gameid, userid, phrase.db_general_attributes, phrase.db_general_attributes_constitution, '14', False)
+        update_item(db, gameid, userid, phrase.db_general_attributes, phrase.db_general_attributes_intelligence, '14', False)
+        update_item(db, gameid, userid, phrase.db_general_attributes, phrase.db_general_attributes_wisdom, '14', False)
+        update_item(db, gameid, userid, phrase.db_general_attributes, phrase.db_general_attributes_charisma, '14', False)
         
 
 def number_of_games(db, user):
