@@ -20,6 +20,11 @@ import keyboard
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 db.init()
+<<<<<<< HEAD:rpgbot/main.py
+telepot.api.set_proxy('http://privoxy:8118')
+=======
+telepot.api.set_proxy('http://0.0.0.0:8118')
+>>>>>>> 34100f3734b3626471289c885f992b5bd72231f6:main.py
 #bot = telepot.Bot(config.bot_token)
 print('Entering message loop.')
 #bot.message_loop(process_message)

@@ -1,0 +1,24 @@
+version: '3.7'
+services: 
+    bot:
+        build: .
+        volumes:
+            - "rpgbot-data:/data"
+        environment: 
+            - RPGBOT_TOKEN=<Telegram-token>
+            - RPGBOT_ADMINS=<my-id,another-id>
+            - RPGBOT_LANG=<Lang code>
+        depends_on: 
+            - privoxy
+        
+
+    privoxy:
+        image: jspc/privoxy-tor
+        environment: 
+            - TZ=Etc/GMT-5
+        ports:
+            - "8118:8118"
+            - "9050:9050"
+    
+volumes:
+    rpgbot-data:
